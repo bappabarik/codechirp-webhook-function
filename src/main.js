@@ -1,8 +1,8 @@
 export default async ({ req, res, log, error }) => {
 
-  if (req.path === "/ping") {
-
-    return res.text("Pong");
+  if (req.path === "/webhook") {
+    
+    return res.send(req.body);
   }
 
   return res.json({
