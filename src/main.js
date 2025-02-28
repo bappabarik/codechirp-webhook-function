@@ -2,7 +2,7 @@ export default async ({ req, res, log, error }) => {
 
   if (req.path === "/webhook") {
     
-    return log(req.body);
+    log(req.body);
   }
 
   return res.json({
