@@ -3,7 +3,7 @@ export default async ({ req, res, log, error }) => {
   if (req.path === "/webhook") {
     
     log(req.body);
-    return res.send("WebHook Called")
+    return res.send("WebHook Called!")
   }
 
   return res.json({
