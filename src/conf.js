@@ -1,3 +1,4 @@
+import { Client, Users } from 'node-appwrite'
 class Auth {
     client = new Client()
     users;

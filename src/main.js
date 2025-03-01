@@ -1,4 +1,3 @@
-import { Client, Users } from 'node-appwrite'
 import auth from './conf.js';
 
 export default async ({ req, res, log, error }) => {
