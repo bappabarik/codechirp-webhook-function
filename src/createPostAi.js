@@ -14,7 +14,7 @@ export default async function getGroqChatCompletion(context, postFor) {
       messages: [
         {
           role: "user",
-          content: `based on this context: ${context} only generate a ${postFor}`,
+          content: `based on this context: ${context} generate a ${postFor}. Only output the ${postFor} text`,
         },
       ],
       model: "llama-3.3-70b-versatile",
