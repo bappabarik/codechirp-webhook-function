@@ -1,8 +1,8 @@
 export default async ({ req, res, log, error }) => {
 
   if (req.path === "/webhook") {
-    
-    log(req.body);
+    const event = req.headers["x-github-event"];
+    log(event, req.body);
     return res.send("WebHook Called")
   }
 
