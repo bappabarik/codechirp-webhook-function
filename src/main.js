@@ -14,7 +14,7 @@ export default async ({ req, res, log, error }) => {
         if (!content) {
           error("error occurred during post creation")
         }
-        const post = await databaseService.createPost({event, content, providerID, app: "X" })
+        const post = await databaseService.createPost({event, content, app: "X",  providerID })
         if (post) {
           log("post created successfully");
         }

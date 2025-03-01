@@ -12,7 +12,7 @@ class DatabaseService {
         
     }
 
-    async createPost({event, content, providerID, draft = false, app}){
+    async createPost({event, content, draft = false, app,  providerID}){
         try {
             const response = await this.database.createDocument(
                 '67c2d53c001ded03e147',
@@ -21,9 +21,9 @@ class DatabaseService {
                 {
                     event,
                     content,
-                    providerID,
                     draft,
-                    app
+                    app,
+                    providerID
                 }
             )
             return response
