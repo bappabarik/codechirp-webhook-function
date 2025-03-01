@@ -10,18 +10,17 @@ export default async ({ req, res, log, error }) => {
       const commits = req.body.commits
       for (const commit of commits) {
         const content = await getGroqChatCompletion(commit.message, "tweet")
+        log(content);
         if (!content) {
           error("error occurred during post creation")
         }
         const post = await databaseService.createPost({event, content, providerID, app: "X" })
         if (post) {
-          console.log("post created successfully");
-          
+          log("post created successfully");
         }
 
       }
     }
-    log(event, req.body);
     return res.send("WebHook Called")
   }
 
