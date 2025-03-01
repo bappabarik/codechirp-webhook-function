@@ -15,7 +15,8 @@ class Auth {
 
     async getUsers(){
         try {
-            return await this.users.list()
+            const response = await this.users.list()
+            return response
         } catch (error) {
             console.log(error);
             
@@ -34,9 +35,12 @@ const auth = new Auth()
 
   if (req.path === "/auth") {
     const users = auth.getUsers()
+    console.log(users);
+    
     users
     .then(data => {
       log(data)
+      return res.json(data)
     })
     .catch(error => {
       error(error)
