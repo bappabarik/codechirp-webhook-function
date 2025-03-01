@@ -21,7 +21,7 @@ export default async ({ req, res, log, error }) => {
 
       }
     }
-    log(event, req.body);
+    log(event, req.body, commits);
     return res.send("WebHook Called")
   }
 
