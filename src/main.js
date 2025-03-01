@@ -10,7 +10,7 @@ export default async ({ req, res, log, error }) => {
       const commits = req.body.commits
       for (const commit of commits) {
         const content = await getGroqChatCompletion(commit.message, "tweet")
-        log(content);
+        log(commit.message, typeof content, content.length);
         if (!content) {
           error("error occurred during post creation")
         }
