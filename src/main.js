@@ -35,7 +35,7 @@ const auth = new Auth()
 
   if (req.path === "/auth") {
     const users = auth.getUsers()
-    log("users: ", users);
+    // log("users: ", users);
     
     users
     .then(data => {
