@@ -34,13 +34,13 @@ const auth = new Auth()
   }
 
   if (req.path === "/auth") {
-    const users = auth.getUsers()
-    // log("users: ", users);
+    const users = await auth.getUsers()
+    log("users: ", users);
     
     users
     .then(data => {
       log(data)
-      return res.json(data)
+      return res.send(data)
     })
     .catch(error => {
       error(error)
