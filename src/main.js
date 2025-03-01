@@ -10,9 +10,9 @@ export default async ({ req, res, log, error }) => {
       const commits = req.body.commits
       for (const commit of commits) {
         const content = await getGroqChatCompletion(commit.message, "tweet")
-        const content2 = await getGroqChatCompletion(commit.message, "tweet")
-        log(content, typeof providerID);
-        if (!content) {
+        const content2 = await getGroqChatCompletion(commit.message, "linkedin-post")
+        log("Content1: ", content,"Content2: ", content2);
+        if (!content && !content2) {
           error("error occurred during post creation")
         }
         const post = await databaseService.createPost({event, content, app: "X",  providerID })
