@@ -5,9 +5,10 @@ export default async ({ req, res, log, error }) => {
 
   if (req.path === "/webhook") {
     const event = req.headers["x-github-event"];
-    const providerID = req.body.sender.id
+    const data = JSON.parse(req.body)
+    const providerID = data.sender.id
     if (event === 'push') {
-      const commits = req.body.commits
+      const commits = data.commits
       for (const commit of commits) {
         const content = await getGroqChatCompletion(commit.message, "tweet")
         if (!content) {
