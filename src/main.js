@@ -22,6 +22,17 @@ export default async ({ req, res, log, error }) => {
         }
 
       }
+    } else if(event === "installation"){
+      const id = req.body.installation.account.id
+      const action = req.body.action
+      const isInstallationExist = await databaseService.getGithubAppData(id)
+      if (isInstallationExist && action === "deleted") {
+          const deleted = await databaseService.deleteInstallation(id)
+          deleted ? log("installation deleted successfully!") : log("Failed to delete installation!!!")
+      } else if(!isInstallationExist && action === "created"){
+        const created = await databaseService.storeGithubAppData(id, {installationID: req.body.installation.id})
+        created ? log("Github app installed successfully!") : log("Failed to install the github app!!!")
+      }
     }
     return res.send("WebHook Called")
   }
