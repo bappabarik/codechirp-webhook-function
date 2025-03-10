@@ -28,7 +28,7 @@ class DatabaseService {
             )
             return response
         } catch (error) {
-            console.log(error);
+            log(error);
             
         }
     }
@@ -44,33 +44,33 @@ class DatabaseService {
                 }
             )
         } catch (error) {
-            console.log("DbService :: storeGithubAppData ::", error)
+            log("DbService :: storeGithubAppData ::", error)
             return null;
         }
     }
 
-    async getGithubAppData(providerID){
+    async getGithubAppData(id){
         try {
             return await this.database.getDocument(
                 process.env.APPWRITE_DATABASE_ID,
                 process.env.APPWRITE_CODECHIRP_GITHUBAPP_COLLECTION_ID,
-                providerID
+                id
             )
         } catch (error) {
-            console.log("DbService :: getGithubAppData ::", error)
+            log("DbService :: getGithubAppData ::", error)
             return null;
         }
     }
 
-    async deleteInstallation(providerID){
+    async deleteInstallation(id){
         try {
             return await this.database.deleteDocument(
                 process.env.APPWRITE_DATABASE_ID,
                 process.env.APPWRITE_CODECHIRP_GITHUBAPP_COLLECTION_ID,
-                providerID
+                id
             )
         } catch (error) {
-            console.log("DbService :: deleteInstallation ::", error)
+            log("DbService :: deleteInstallation ::", error)
             return null
         }
     }
