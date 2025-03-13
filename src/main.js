@@ -2,6 +2,9 @@ import databaseService from './conf.js';
 import getGroqChatCompletion from './createPostAi.js';
 
 export default async ({ req, res, log, error }) => {
+  if (req.path  === "/test") {
+    res.send("test running...")
+  }
 
   if (req.path === "/webhook") {
     const event = req.headers["x-github-event"];
