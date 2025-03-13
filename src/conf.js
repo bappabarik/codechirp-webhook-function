@@ -33,7 +33,7 @@ class DatabaseService {
         }
     }
 
-    async storeGithubAppData(id, {installationID}){
+    async storeGithubAppData(id, installationID){
         try {
             return await this.database.createDocument(
                 process.env.APPWRITE_DATABASE_ID,
