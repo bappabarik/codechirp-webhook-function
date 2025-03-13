@@ -28,7 +28,7 @@ class DatabaseService {
             )
             return response
         } catch (error) {
-            log(error);
+            console.log(error);
             
         }
     }
@@ -44,7 +44,7 @@ class DatabaseService {
                 }
             )
         } catch (error) {
-            log("DbService :: storeGithubAppData ::", error)
+            console.log("DbService :: storeGithubAppData ::", error)
             return null;
         }
     }
@@ -57,7 +57,7 @@ class DatabaseService {
                 id
             )
         } catch (error) {
-            log("DbService :: getGithubAppData ::", error)
+            console.log("DbService :: getGithubAppData ::", error)
             return null;
         }
     }
@@ -70,7 +70,7 @@ class DatabaseService {
                 id
             )
         } catch (error) {
-            log("DbService :: deleteInstallation ::", error)
+            console.log("DbService :: deleteInstallation ::", error)
             return null
         }
     }
