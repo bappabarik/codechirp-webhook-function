@@ -29,7 +29,7 @@ export default async ({ req, res, log, error }) => {
       const isInstallationExist = await databaseService.getGithubAppData(id)
       if (isInstallationExist && action === "deleted") {
           const deleted = await databaseService.deleteInstallation(id)
-          console.log(deleted);
+          log(deleted);
           
           deleted ? log("installation deleted successfully!") : log("Failed to delete installation!!!")
       } else if(!isInstallationExist && action === "created"){
