@@ -25,6 +25,7 @@ export default async ({ req, res, log, error }) => {
     } else if(event === "installation"){
       const id = req.body.installation.account.id
       const action = req.body.action
+      log(id)
       const isInstallationExist = await databaseService.getGithubAppData(id)
       if (isInstallationExist && action === "deleted") {
           const deleted = await databaseService.deleteInstallation(id)
