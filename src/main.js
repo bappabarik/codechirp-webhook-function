@@ -13,9 +13,7 @@ export default async ({ req, res, log, error }) => {
       const commits = req.body.commits
       for (const commit of commits) {
         let context = `commit message : ${commit.message}
-                      commit url: ${commit.url}
-                      add this commit url to the post
-                      `
+                      commit url: ${commit.url}`
         const tweet = await getGroqChatCompletion(context, "tweet")
         const linkedinPost = await getGroqChatCompletion(commit.message, "linkedin-post")
         log("Content1: ", tweet,"Content2: ", linkedinPost);
