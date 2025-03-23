@@ -32,9 +32,9 @@ export default async ({ req, res, log, error }) => {
       const action = req.body.action
       const installationID = req.body.installation.id
       log(providerId, installationID)
-      const isInstallationExist = await databaseService.getGithubAppData(id)
+      const isInstallationExist = await databaseService.getGithubAppData(providerId)
       if (isInstallationExist && action === "deleted") {
-          await databaseService.deleteInstallation(id)
+          await databaseService.deleteInstallation(providerId)
           .then(response => {
             response ? log("installation deleted successfully!", response) : log("Failed to delete installation!!!", response)
           })
