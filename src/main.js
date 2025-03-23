@@ -30,7 +30,7 @@ export default async ({ req, res, log, error }) => {
     } else if(event === "installation"){
       const providerId = String(req.body.installation.account.id)
       const action = req.body.action
-      const installationID = req.body.installation.id
+      const installationID = String(req.body.installation.id)
       log(typeof providerId, installationID)
       const isInstallationExist = await databaseService.getGithubAppData(providerId)
       if (isInstallationExist && action === "deleted") {
