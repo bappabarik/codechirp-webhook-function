@@ -1,17 +1,19 @@
 export default async function fetchGitDiff(owner, repo, commitSha) {
     const url = `https://api.github.com/repos/${owner}/${repo}/commits/${commitSha}`;
 
-    fetch(url, {
-    headers: { Accept: "application/vnd.github.v3.diff" },
-    })
-    .then(res => res.text())
-    .then(diffOutput => 
-    {
-        return diffOutput;
-    }
-    )
-    .catch(err =>{
-         console.error("Error:", err)
-         return null;
+    try {
+        const response = await fetch(url, {
+            headers: { Accept: "application/vnd.github.v3.diff" }
         });
+        
+        if (!response.ok) {
+            throw new Error(`GitHub API request failed with status ${response.status}`);
+        }
+        
+        const diffOutput = await response.text();
+        return diffOutput;
+    } catch (err) {
+        console.error("Error:", err);
+        return null;
+    }
 }
