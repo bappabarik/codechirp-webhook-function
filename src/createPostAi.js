@@ -14,13 +14,11 @@ export default async function getGroqChatCompletion(context, postFor) {
       messages: [
         {
           role: "user",
-          content: `You are a content writer creating engaging and informative posts.  
+          content: `
+          ${context}
 
-          Based on the following context: ${context} 
-          
-          Write a compelling ${postFor} that naturally incorporates the commit URL, making it easy for readers to visit. Ensure the post flows well and encourages engagement.`,
-        },
-      ],
+          TASK: Generate a engaging social media post for ${postFor} that highlight the key changes, improvements, or fixes in this code update. The posts should be professional yet conversational, highlighting the business or technical value of these changes.`,
+    }],
       model: "llama-3.3-70b-versatile",
     });
     return content.choices[0]?.message?.content || ""

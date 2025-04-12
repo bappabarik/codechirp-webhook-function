@@ -1,5 +1,6 @@
 import databaseService from './conf.js';
 import getGroqChatCompletion from './createPostAi.js';
+import fetchGitDiff from './gitDiff.js';
 
 export default async ({ req, res, log, error }) => {
   if (req.path  === "/test") {
@@ -9,11 +10,22 @@ export default async ({ req, res, log, error }) => {
   if (req.path === "/webhook") {
     const event = req.headers["x-github-event"];
     if (event === 'push') {
+      const owner = req.body.repository.owner.name
+      const repo = req.body.repository.name
       const providerID = String(req.body.sender.id)
       const commits = req.body.commits
       for (const commit of commits) {
-        let context = `commit message : ${commit.message}
-                      commit url: ${commit.url}`
+        const diff = fetchGitDiff(owner, repo, commit.id) || ''
+        log("diff", diff)
+        let context = ` REPOSITORY_UPDATE_CONTEXT:
+                        Repository: ${repo}
+                        Commit message: ${commit.message}
+                        Author: ${commit.author.name}
+                        Date: ${commit.timestamp}
+                        
+                        CHANGES:
+                        ${diff}
+                        `
         const tweet = await getGroqChatCompletion(context, "tweet")
         const linkedinPost = await getGroqChatCompletion(commit.message, "linkedin-post")
         log("Content1: ", tweet,"Content2: ", linkedinPost);
