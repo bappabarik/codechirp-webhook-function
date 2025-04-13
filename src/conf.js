@@ -12,7 +12,7 @@ class DatabaseService {
         
     }
 
-    async createPost({event, content, draft = false, app,  providerID}){
+    async createPost({event, content, draft = false, app,  providerID, commitMessage}){
         try {
             const response = await this.database.createDocument(
                 process.env.APPWRITE_DATABASE_ID,
@@ -23,7 +23,8 @@ class DatabaseService {
                     content,
                     draft,
                     app,
-                    providerID
+                    providerID,
+                    commitMessage
                 }
             )
             return response

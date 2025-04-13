@@ -32,14 +32,14 @@ export default async ({ req, res, log, error }) => {
                         ${diff}
                         `
         const tweet = await getGroqChatCompletion(context, "tweet")
-        const linkedinPost = await getGroqChatCompletion(commit.message, "linkedin-post")
+        const linkedinPost = await getGroqChatCompletion(context, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
         // log("diff", diff)
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
         }
-        const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID })
-        const post2 = await databaseService.createPost({event, content: linkedinPost, app: "linkedin",  providerID })
+        const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID, commitMessage: commit.message })
+        const post2 = await databaseService.createPost({event, content: linkedinPost, app: "linkedin",  providerID, commitMessage: commit.message })
         if (post && post2) {
           log("post created successfully");
         }
