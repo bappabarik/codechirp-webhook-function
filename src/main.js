@@ -14,8 +14,10 @@ export default async ({ req, res, log, error }) => {
       const repo = req.body.repository.name
       const providerID = String(req.body.sender.id)
       const commits = req.body.commits
+
       for (const commit of commits) {
         const diff = fetchGitDiff(owner, repo, commit.id) || ''
+        console.log(owner, repo, diff);
         let context = ` REPOSITORY_UPDATE_CONTEXT:
                         Repository: ${repo}
                         Commit message: ${commit.message}
@@ -28,7 +30,7 @@ export default async ({ req, res, log, error }) => {
         const tweet = await getGroqChatCompletion(context, "tweet")
         const linkedinPost = await getGroqChatCompletion(commit.message, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
-        log("diff", diff)
+        // log("diff", diff)
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
         }
