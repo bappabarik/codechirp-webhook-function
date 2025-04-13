@@ -16,7 +16,7 @@ export default async ({ req, res, log, error }) => {
       const commits = req.body.commits
 
       for (const commit of commits) {
-        const diff = fetchGitDiff(owner, repo, commit.id) || ''
+        const diff = fetchGitDiff(owner, repo, commit.id)
         console.log(owner, repo, diff);
         let context = ` REPOSITORY_UPDATE_CONTEXT:
                         Repository: ${repo}
