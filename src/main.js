@@ -34,7 +34,7 @@ export default async ({ req, res, log, error }) => {
         const tweet = await getGroqChatCompletion(context, "tweet")
         const linkedinPost = await getGroqChatCompletion(context, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
-        // log("diff", diff)
+        log("diff", diff)
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
         }
