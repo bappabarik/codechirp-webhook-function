@@ -17,7 +17,15 @@ export default async function getGroqChatCompletion(context, postFor) {
           content: `
           ${context}
 
-          TASK: Generate a engaging social media post for ${postFor} that highlight the key changes, improvements, or fixes in this code update. The posts should be professional yet conversational, highlighting the business or technical value of these changes.`,
+          TASK: Generate ONLY the text of an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant diff code snippet. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
+
+          IMPORTANT: 
+          - Output ONLY the raw post content and code snippet
+          - NO introductory text like "Here is your post" or "Social media post:"
+          - NO explanatory text before or after the post
+          - NO concluding remarks or questions like "Hope this helps"
+          - NO formatting instructions or meta-commentary
+          `,
     }],
       model: "llama-3.3-70b-versatile",
     });
