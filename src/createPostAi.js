@@ -17,7 +17,7 @@ export default async function getGroqChatCompletion(context, postFor) {
           content: `
           ${context}
 
-          TASK: Generate ONLY the text of an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant diff code snippet. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
+          TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant diff code snippet from the context at the end of the post. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
 
           IMPORTANT: 
           - Output ONLY the raw post content and code snippet
