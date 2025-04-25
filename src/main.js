@@ -19,6 +19,7 @@ export default async ({ req, res, log, error }) => {
         let diff = ''
         fetchGitDiff(owner, repo, commit.id)
         .then(data => {
+          log(data)
           diff = data || ''
         })
         console.log(owner, repo, diff);
