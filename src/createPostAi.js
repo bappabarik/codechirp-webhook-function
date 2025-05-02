@@ -60,7 +60,7 @@ export default async function getGroqChatCompletion(context, postFor) {
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents:  `
-                ${context}
+                CONTEXT: ${context}
       
                 TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant CHANGES code snippet from the REPOSITORY_UPDATE_CONTEXT at the end of the post. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
       
