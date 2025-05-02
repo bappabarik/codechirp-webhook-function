@@ -23,7 +23,7 @@ export default async ({ req, res, log, error }) => {
           diff = data || ''
         })
         console.log(owner, repo, diff);
-        let context = ` REPOSITORY_UPDATE_CONTEXT:
+        let context = `CONTEXT:
                         Repository: ${repo}
                         Commit message: ${commit.message}
                         Author: ${commit.author.name}
