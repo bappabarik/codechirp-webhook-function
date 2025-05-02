@@ -1,5 +1,5 @@
 import databaseService from './conf.js';
-import getGroqChatCompletion from './createPostAi.js';
+import getChatCompletion from './createPostAi.js';
 import fetchGitDiff from './gitDiff.js';
 
 export default async ({ req, res, log, error }) => {
@@ -32,8 +32,8 @@ export default async ({ req, res, log, error }) => {
                         CHANGES:
                         ${diff}
                         `
-        const tweet = await getGroqChatCompletion(context, "tweet")
-        const linkedinPost = await getGroqChatCompletion(context, "linkedin-post")
+        const tweet = await getChatCompletion(context, "tweet")
+        const linkedinPost = await getChatCompletion(context, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
         log("diff", diff)
         if (!tweet && !linkedinPost) {

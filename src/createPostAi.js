@@ -55,17 +55,17 @@ const ai = new GoogleGenAI({ apiKey: "AIzaSyDe2eN11QY0b7JmFJxuZdNxbWk9W4Lru9U" }
 // main();
 
 
-export default async function getGroqChatCompletion(context, postFor) {
+export default async function getChatCompletion(context, postFor) {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
       contents:  `
-                CONTEXT: ${context}
+                ${context}
       
                 TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant CHANGES code snippet from the REPOSITORY_UPDATE_CONTEXT at the end of the post. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
       
                 IMPORTANT: 
-                - Output ONLY the raw post content and code snippet
+                - Output ONLY the raw post content and code snippet must from the CHANGES
                 - NO introductory text like "Here is your post" or "Social media post:"
                 - NO explanatory text before or after the post
                 - NO concluding remarks or questions like "Hope this helps"
