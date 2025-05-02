@@ -35,7 +35,7 @@ export default async ({ req, res, log, error }) => {
         const tweet = await getChatCompletion(context, "tweet")
         const linkedinPost = await getChatCompletion(context, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
-        log("diff", diff)
+        log("diff", context)
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
         }
