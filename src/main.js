@@ -19,10 +19,9 @@ export default async ({ req, res, log, error }) => {
         let diff = ''
         fetchGitDiff(owner, repo, commit.id)
         .then(data => {
-          log(data)
-          diff = data || ''
+          diff = `${data}` || ''
         })
-        console.log(owner, repo, diff);
+        // console.log(owner, repo, diff);
         let context = `CONTEXT:
                         Repository: ${repo}
                         Commit message: ${commit.message}
