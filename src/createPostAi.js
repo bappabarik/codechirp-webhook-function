@@ -67,8 +67,7 @@ export default async function getChatCompletion(context, postFor) {
                 IMPORTANT: 
                 - Output ONLY the raw post content and generate a code snippet highlighting the key changes from the commitsha that provided in CHANGES 
                 - The code snippet should be beautiful and structured that highlight before and after changes.
-                - Always generate code snippet at the end of the post.
-                - Here the code snippet is the image that will be uploaded by user in the respective social media platform and the text would be the caption, so the code snippet will be after the caption.
+                - Always generate code snippet at the end of the post caption after writing all the hashtags.
                 - NO introductory text like "Here is your post" or "Social media post:"
                 - NO explanatory text before or after the post
                 - NO concluding remarks or questions like "Hope this helps"
