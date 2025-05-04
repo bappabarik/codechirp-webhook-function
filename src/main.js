@@ -30,7 +30,7 @@ export default async ({ req, res, log, error }) => {
                         CHANGES:
                         ${diff}
                         `
-        log("context", context)
+        log("context..", context)
         return
         const tweet = await getChatCompletion(context, diff, "tweet")
         const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID, commitMessage: commit.message })
