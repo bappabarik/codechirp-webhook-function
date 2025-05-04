@@ -17,7 +17,7 @@ export default async ({ req, res, log, error }) => {
 
       for (const commit of commits) {
         let diff = ''
-        fetchGitDiff(owner, repo, commit.id)
+        await fetchGitDiff(owner, repo, commit.id)
         .then(data => {
           diff = `${data}`
         })
