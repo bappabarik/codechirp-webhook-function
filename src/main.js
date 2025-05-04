@@ -26,7 +26,12 @@ export default async ({ req, res, log, error }) => {
                         Commit message: ${commit.message}
                         Author: ${commit.author.name}
                         Date: ${commit.timestamp}
+
+                        CHANGES:
+                        ${diff}
                         `
+        log("context", context)
+        return
         const tweet = await getChatCompletion(context, diff, "tweet")
         const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID, commitMessage: commit.message })
         const linkedinPost = await getChatCompletion(context, diff, "linkedin-post")
