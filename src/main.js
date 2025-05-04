@@ -30,12 +30,12 @@ export default async ({ req, res, log, error }) => {
                         CHANGES:
                         ${diff}
                         `
-        log("context..", context)
+        // log("context..", context)
         const tweet = await getChatCompletion(context, "tweet")
         const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID, commitMessage: commit.message })
         const linkedinPost = await getChatCompletion(context, "linkedin-post")
         const post2 = await databaseService.createPost({event, content: linkedinPost, app: "linkedin",  providerID, commitMessage: commit.message })
-        log("tweet", tweet, "linkedin", linkedinPost);
+        // log("tweet", tweet, "linkedin", linkedinPost);
         
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
