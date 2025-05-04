@@ -21,7 +21,6 @@ export default async ({ req, res, log, error }) => {
         .then(data => {
           diff = `${data}`
         })
-        // console.log(owner, repo, diff);
         let context = `REPO CONTEXT:
                         Repository: ${repo}
                         Commit message: ${commit.message}
@@ -30,8 +29,6 @@ export default async ({ req, res, log, error }) => {
                         `
         const tweet = getChatCompletion(context, diff, "tweet")
         const linkedinPost = getChatCompletion(context, diff, "linkedin-post")
-        // log("Content1: ", tweet,"Content2: ", linkedinPost);
-        log("tweet", context)
         if (!tweet && !linkedinPost) {
           error("error occurred during post creation")
         }
