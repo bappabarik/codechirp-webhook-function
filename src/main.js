@@ -22,17 +22,14 @@ export default async ({ req, res, log, error }) => {
           diff = `${data}`
         })
         // console.log(owner, repo, diff);
-        let context = `CONTEXT:
+        let context = `REPO CONTEXT:
                         Repository: ${repo}
                         Commit message: ${commit.message}
                         Author: ${commit.author.name}
                         Date: ${commit.timestamp}
-                        
-                        CHANGES:
-                        ${diff}
                         `
-        const tweet = await getChatCompletion(context, "tweet")
-        const linkedinPost = await getChatCompletion(context, "linkedin-post")
+        const tweet = await getChatCompletion(context, diff, "tweet")
+        const linkedinPost = await getChatCompletion(context, diff, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
         log("diff", context)
         if (!tweet && !linkedinPost) {
@@ -41,9 +38,8 @@ export default async ({ req, res, log, error }) => {
         const post = await databaseService.createPost({event, content: tweet, app: "X",  providerID, commitMessage: commit.message })
         const post2 = await databaseService.createPost({event, content: linkedinPost, app: "linkedin",  providerID, commitMessage: commit.message })
         if (post && post2) {
-          log("post created successfully");
+          log("post created successfully"); 
         }
-
       }
     } else if(event === "installation"){
       const providerId = String(req.body.installation.account.id)
