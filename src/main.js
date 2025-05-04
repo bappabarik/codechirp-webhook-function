@@ -28,8 +28,8 @@ export default async ({ req, res, log, error }) => {
                         Author: ${commit.author.name}
                         Date: ${commit.timestamp}
                         `
-        const tweet = await getChatCompletion(context, diff, "tweet")
-        const linkedinPost = await getChatCompletion(context, diff, "linkedin-post")
+        const tweet = getChatCompletion(context, diff, "tweet")
+        const linkedinPost = getChatCompletion(context, diff, "linkedin-post")
         // log("Content1: ", tweet,"Content2: ", linkedinPost);
         log("tweet", context)
         if (!tweet && !linkedinPost) {
