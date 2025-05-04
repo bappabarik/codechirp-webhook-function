@@ -65,10 +65,11 @@ export default async function getChatCompletion(context, diff, postFor) {
                 CHANGES: 
                  ${diff}
       
-                TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Generate a code snippet highlighting the key changes from the CHANGES. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
+                TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Generate a ${postFor === 'tweet' ? 'tweet of maximum 280 characters with appropriate emojis and hashtags' : 'linkedin post with proper emojis, pointers and hashtags'} and a code snippet highlighting the key changes from the CHANGES. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
       
                 IMPORTANT: 
-                - Output ONLY the raw post content and generate a code snippet highlighting the key changes from the commitsha that provided in CHANGES
+                - Output ONLY the raw post content and generate a code snippet highlighting the key changes from the commitsha that provided in CHANGES 
+                - The code snippet should be beautiful and structured
                 - Always generate code snippet at the end of the post.
                 - NO introductory text like "Here is your post" or "Social media post:"
                 - NO explanatory text before or after the post
