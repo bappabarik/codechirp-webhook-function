@@ -1,6 +1,6 @@
 // import Groq from "groq-sdk";
 
-// const groq = new Groq({ apiKey: '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' });
+// const groq = new Groq({ apiKey:  });
 
 // export async function main() {
 //   const chatCompletion = await getGroqChatCompletion();
@@ -42,7 +42,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: "AIzaSyDe2eN11QY0b7JmFJxuZdNxbWk9W4Lru9U" });
+const ai = new GoogleGenAI({ apiKey: process.env.GoogleGenAI_apiKey });
 
 // async function main() {
 //   const response = await ai.models.generateContent({
