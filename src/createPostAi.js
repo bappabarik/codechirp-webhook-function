@@ -8,9 +8,6 @@
 //   console.log(chatCompletion.choices[0]?.message?.content || "");
 // }
 
-
-
-
 // export default async function getGroqChatCompletion(context, postFor) {
 //   try {
 //     const content = await groq.chat.completions.create({
@@ -22,7 +19,7 @@
 
 //           TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Include the relevant CHANGES code snippet from the REPOSITORY_UPDATE_CONTEXT at the end of the post. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
 
-//           IMPORTANT: 
+//           IMPORTANT:
 //           - Output ONLY the raw post content and code snippet
 //           - NO introductory text like "Here is your post" or "Social media post:"
 //           - NO explanatory text before or after the post
@@ -39,80 +36,80 @@
 //   }
 // }
 
-
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from '@google/genai';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GoogleGenAI_apiKey });
-
-
 
 export default async function getChatCompletion(context, postFor) {
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
-      contents:  `
+      model: 'gemini-2.0-flash',
+      contents:
+        `
                 ${context}
       
                 TASK:
-                  You are a technical content generator helping developers share code learnings publicly.
+                  You're an expert technical content writer helping developers share their work online.
 
-                  Given the CHANGES (Git diff and commit message), generate a platform-specific social media post that does the following:
+                  Using the CHANGES provided (Git diff and commit message), generate a social media post with the following format:
 
-                  1. Frames the update as part of the developer's public learning journey.
-                  2. Highlights the key fix, improvement, or refactor using clear, concise language.
-                  3. Generates an engaging ${postFor === 'tweet' ? 'tweet (max 280 characters) with relevant emojis and hashtags' : 'LinkedIn post with bullet points, emojis, and professional hashtags'}.
-                  4. Includes a single well-formatted code snippet at the end showing the "before" and "after" of the key change.
-                  5. The code snippet must be:
-                    - Compact and visually clear.
-                    - Have inline comments explaining the changes.
-                    - No horizontal or vertical scroll needed.
-                    - Easy to paste into a social post as-is.
+                  POST CONTENT:
+                  1. Write a short, engaging summary of the update as part of a developer's public learning journey.
+                  2. Highlight the core improvement or refactor.
+                  3. Write a ${postFor === 'tweet' ? 'Twitter/X post (max 280 characters with relevant emojis and hashtags)' : 'LinkedIn post with bullet points, emojis, and professional hashtags'}.
+                  4. End the post with a **single structured code snippet** showing the change clearly.
 
-                  6. Reference for the code snippet structure: 
-                    { 
-                        // ✅ Refactored postRef for precise code block targeting
+                  CODE SNIPPET INSTRUCTIONS:
+                  - The snippet should show **Before** and **After** code.
+                  - Use **inline comments** to explain the key improvement(s).
+                  - The snippet should be:
+                    - Language-agnostic (match the language from the diff automatically)
+                    - Free of ` +
+                          ` and ` -
+                          ` diff symbols
+                    - Clean, compact, and ready to paste
+                    - Easy to read and understand in a social media post (no horizontal or vertical scrolling)
+                  - Follow this structure exactly:
 
-                        // Before: postRef on the full post container
-                        <div
-                          onClick={() => setIsEditing(true)}
-                          className="cursor-pointer h-full break-words"
-                          ref={postRef} // ❌ Too broad
-                        >
-                          <ReactMarkdown components={{ ... }} />
-                        </div>
+                  \`\`\`[LANGUAGE]
+                  // ✅ [Short title or improvement, e.g., "Improved loop efficiency"]
 
-                        // After: postRef moved directly to the code block wrapper
-                        <ReactMarkdown
-                          components={{
-                            code({ children, ...props }) {
-                              return (
-                                <div className="w-full" ref={postRef}> {/* ✅ Scoped & precise */}
-                                  <code className="bg-zinc-700 text-white px-1 py-1 my-1 rounded text-wrap" {...props}>
-                                    {children}
-                                  </code>
-                                </div>
-                              );
-                            },
-                          }}
-                        />
-                    }
-                  
-                  - generate the snippet like this
+                  // Before: [describe what's wrong or suboptimal]
+                  <original code block>
+
+                  // After: [describe what's fixed or improved]
+                  <improved code block>
+                  \`\`\`
+
+                  Example format:
+                  \`\`\`python
+                  // ✅ Simplified loop with built-in sum()
+
+                  // Before: Manual loop to add values
+                  total = 0
+                  for x in numbers:
+                      total += x
+
+                  // After: More Pythonic using built-in sum
+                  total = sum(numbers)
+                  \`\`\`
 
                   IMPORTANT:
-                  - Do NOT include any introductory or concluding remarks.
-                  - Do NOT explain what you're generating.
-                  - Output ONLY the final social media post content followed directly by the code snippet.
-                  - The code snippet must come **at the end** of the post, **after all hashtags**.
+                  - Do NOT output raw diffs.
+                  - Do NOT explain the snippet.
+                  - Do NOT include markdown headings like “Before:” or “After:” outside the snippet.
+                  - Only include the social media post, then the code snippet.
 
-                  CHANGES:
-                  Include commit message, changed lines, and relevant diff context.
-                `,
+
+                  OUTPUT FORMAT:
+                  1. The final social post text
+                  2. A single code snippet following the format above
+                  `,
     });
 
-    return response.text
+    return response.text;
   } catch (error) {
-    error(error)
-    return null
+    error(error);
+    return null;
   }
 }
