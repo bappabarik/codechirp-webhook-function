@@ -53,16 +53,29 @@ export default async function getChatCompletion(context, postFor) {
       contents:  `
                 ${context}
       
-                TASK: Generate an engaging social media post for ${postFor} that highlights the key changes, improvements, or fixes in this code update. Generate a ${postFor === 'tweet' ? 'tweet of maximum 280 characters with appropriate emojis and hashtags' : 'linkedin post with proper emojis, pointers and hashtags'} and a code snippet highlighting the key changes from the CHANGES. The post should emphasize the "learn in public" concept - showcasing how sharing code changes and learnings openly benefits the developer community. Frame this update as part of the journey of public learning and collaboration.
-      
-                IMPORTANT: 
-                - Output ONLY the raw post content and generate a code snippet highlighting the key changes from the commitsha that provided in CHANGES 
-                - The code snippet should be beautiful and structured that highlight before and after changes.
-                - Always generate code snippet at the end of the post caption after writing all the hashtags.
-                - NO introductory text like "Here is your post" or "Social media post:"
-                - NO explanatory text before or after the post
-                - NO concluding remarks or questions like "Hope this helps"
-                - NO formatting instructions or meta-commentary
+                TASK:
+                  You are a technical content generator helping developers share code learnings publicly.
+
+                  Given the CHANGES (Git diff and commit message), generate a platform-specific social media post that does the following:
+
+                  1. Frames the update as part of the developer's public learning journey.
+                  2. Highlights the key fix, improvement, or refactor using clear, concise language.
+                  3. Generates an engaging ${postFor === 'tweet' ? 'tweet (max 280 characters) with relevant emojis and hashtags' : 'LinkedIn post with bullet points, emojis, and professional hashtags'}.
+                  4. Includes a single well-formatted code snippet at the end showing the "before" and "after" of the key change.
+                  5. The code snippet must be:
+                    - Compact and visually clear.
+                    - Have inline comments explaining the changes.
+                    - No horizontal or vertical scroll needed.
+                    - Easy to paste into a social post as-is.
+
+                  IMPORTANT:
+                  - Do NOT include any introductory or concluding remarks.
+                  - Do NOT explain what you're generating.
+                  - Output ONLY the final social media post content followed directly by the code snippet.
+                  - The code snippet must come **at the end** of the post, **after all hashtags**.
+
+                  CHANGES:
+                  Include commit message, changed lines, and relevant diff context.
                 `,
     });
 
