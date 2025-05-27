@@ -71,7 +71,7 @@ export default async function getChatCompletion(context, postFor) {
                     - Easy to read and understand in a social media post (no horizontal or vertical scrolling)
                   - Follow this structure exactly:
 
-                  \`\`\`[LANGUAGE]
+                  (triple backticks)[LANGUAGE]
                   // ✅ [Short title or improvement, e.g., "Improved loop efficiency"]
 
                   // Before: [describe what's wrong or suboptimal]
@@ -79,10 +79,10 @@ export default async function getChatCompletion(context, postFor) {
 
                   // After: [describe what's fixed or improved]
                   <improved code block>
-                  \`\`\`
+                  (triple backticks end)
 
                   Example format:
-                  \`\`\`python
+                  (triple backticks)python
                   // ✅ Simplified loop with built-in sum()
 
                   // Before: Manual loop to add values
@@ -92,7 +92,7 @@ export default async function getChatCompletion(context, postFor) {
 
                   // After: More Pythonic using built-in sum
                   total = sum(numbers)
-                  \`\`\`
+                  (triple backticks end)
 
                   IMPORTANT:
                   - Do NOT output raw diffs.
