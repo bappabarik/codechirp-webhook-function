@@ -68,7 +68,7 @@ export default async function getChatCompletion(context, postFor) {
                     - No horizontal or vertical scroll needed.
                     - Easy to paste into a social post as-is.
 
-                  6. EXAMPLE CODE SNIPPET: 
+                  6. Reference for the code snippet structure: 
                     { 
                         // ✅ Refactored postRef for precise code block targeting
 
@@ -96,6 +96,8 @@ export default async function getChatCompletion(context, postFor) {
                           }}
                         />
                     }
+                  
+                  - generate the snippet like this
 
                   IMPORTANT:
                   - Do NOT include any introductory or concluding remarks.
