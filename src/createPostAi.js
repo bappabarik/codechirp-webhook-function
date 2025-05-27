@@ -68,6 +68,35 @@ export default async function getChatCompletion(context, postFor) {
                     - No horizontal or vertical scroll needed.
                     - Easy to paste into a social post as-is.
 
+                  6. EXAMPLE CODE SNIPPET: 
+                    { 
+                        // ✅ Refactored postRef for precise code block targeting
+
+                        // Before: postRef on the full post container
+                        <div
+                          onClick={() => setIsEditing(true)}
+                          className="cursor-pointer h-full break-words"
+                          ref={postRef} // ❌ Too broad
+                        >
+                          <ReactMarkdown components={{ ... }} />
+                        </div>
+
+                        // After: postRef moved directly to the code block wrapper
+                        <ReactMarkdown
+                          components={{
+                            code({ children, ...props }) {
+                              return (
+                                <div className="w-full" ref={postRef}> {/* ✅ Scoped & precise */}
+                                  <code className="bg-zinc-700 text-white px-1 py-1 my-1 rounded text-wrap" {...props}>
+                                    {children}
+                                  </code>
+                                </div>
+                              );
+                            },
+                          }}
+                        />
+                    }
+
                   IMPORTANT:
                   - Do NOT include any introductory or concluding remarks.
                   - Do NOT explain what you're generating.
