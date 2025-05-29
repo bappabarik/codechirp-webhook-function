@@ -64,9 +64,7 @@ export default async function getChatCompletion(context, postFor) {
                   - Use **inline comments** to explain the key improvement(s).
                   - The snippet should be:
                     - Language-agnostic (match the language from the diff automatically)
-                    - Free of ` +
-                          ` and ` -
-                          ` diff symbols
+                    - Free of + and - diff symbols
                     - Clean, compact, and ready to paste
                     - Easy to read and understand in a social media post (no horizontal or vertical scrolling)
                   - Follow this structure exactly:
