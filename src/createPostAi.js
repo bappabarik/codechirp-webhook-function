@@ -97,6 +97,11 @@ export default async function getChatCompletion(context, postFor) {
                   - Do NOT explain the snippet.
                   - Do NOT include markdown headings like “Before:” or “After:” outside the snippet.
                   - Only include the social media post, then the code snippet.
+                  - Output ONLY the raw post content and code snippet
+                  - NO introductory text like "Here is your post" or "Social media post:"
+                  - NO explanatory text before or after the post
+                  - NO concluding remarks or questions like "Hope this helps"
+                  - NO formatting instructions or meta-commentary
 
 
                   OUTPUT FORMAT:
